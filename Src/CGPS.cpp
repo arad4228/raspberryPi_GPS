@@ -56,7 +56,7 @@ std::pair<double, double> CGPS::getLocation()
         if(serialDataAvail(this->gpsSerial))
         {
             data = serialGetchar(this->gpsSerial);
-]            if(data == '$')
+            if(data == '$')
             {
                 std::cout << "2" << std::endl;
                 this->IsitGGAstring=0;
