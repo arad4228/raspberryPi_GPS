@@ -8,6 +8,7 @@ int main(void)
     {
         pairLocation = GPS.getLocation();
         std::cout << "Latitude: " << pairLocation.first << " Longitude: " << pairLocation.second << std::endl;
+        return 0;
     }
     return 0;
 }
