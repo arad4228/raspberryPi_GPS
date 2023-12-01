@@ -58,7 +58,6 @@ std::pair<double, double> CGPS::getLocation()
             data = serialGetchar(this->gpsSerial);
             if(data == '$')
             {
-                std::cout << "2" << std::endl;
                 this->IsitGGAstring=0;
                 this->GGA_index=0;
             }
@@ -103,17 +102,17 @@ void CGPS::extractLocation(const std::string& strSerialData, double& latitude, d
         try {
             if(count == 1)
             {
-                int tempLatitue = std::stod(token);
-                latitude = tempLatitue / 100;
-                tempLatitue = tempLatitue % 100;
-                latitude+= tempLatitue/60.0;
+                double tempLatitude = std::stod(token);
+                latitude = (int)tempLatitude / 100;
+                tempLatitude = tempLatitude - (latitude * 100);
+		latitude+= tempLatitude/60.0;
             }
             else if (count == 3)
             {
-                int templongitude = std::stod(token);
-                longitude = templongitude/100;
-                templongitude = templongitude % 100;
-                longitude+=templongitude/60.0;
+                double templongitude = std::stod(token);
+             	longitude = (int)templongitude/100;
+                templongitude = templongitude - (longitude * 100);
+		longitude+=templongitude/60.0;
             }
             } catch (const std::exception& e) {
                 if(count == 2)
