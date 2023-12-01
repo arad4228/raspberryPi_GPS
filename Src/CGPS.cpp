@@ -102,17 +102,17 @@ void CGPS::extractLocation(const std::string& strSerialData, double& latitude, d
         try {
             if(count == 1)
             {
-                double tempLatitude = std::stod(token);
-                latitude = (int)tempLatitude / 100;
+                double tempLatitude = std::stod(token, nullptr);
+		latitude = (int)tempLatitude / 100;
                 tempLatitude = tempLatitude - (latitude * 100);
-		latitude+= tempLatitude/60.0;
+		latitude+= tempLatitude/(double)60;
             }
             else if (count == 3)
             {
                 double templongitude = std::stod(token);
              	longitude = (int)templongitude/100;
                 templongitude = templongitude - (longitude * 100);
-		longitude+=templongitude/60.0;
+		longitude+=templongitude/(double)60;
             }
             } catch (const std::exception& e) {
                 if(count == 2)
